@@ -4,19 +4,21 @@
 const userListEl = document.querySelector(".user-list");
 
 async function main() {
-    const user = await fetch("https://jsonplaceholder.typicode.com/users");
-    const usersData = await users.json();
+    const res = await fetch("https://jsonplaceholder.typicode.com/users");
+    const usersData = await res.json();
     userListEl.innerHTML = usersData.map((user) => userHTML(user)).join("");
 }
 
 main();
 
 function showUserPosts(user) {
+    localStorage.setItem("id", id);
+    window.location.href =`${window.Location.origin}user.html`
     console.log(user) ;
 }
 
 function userHTML(user) {
-    return <div class="user-card" onclick="showUserPosts(${user})">
+    return `<div class="user-card" onclick="showUserPosts(${user.id})">
     <div class="user-card__container">
         <h3>${user.name}</h3>
             <p><b>Email:</b> ${user.email}</p>
@@ -25,5 +27,5 @@ function userHTML(user) {
             ${user.website}
             </a></p>
         </div>
-    </div>
+    </div>`;
 }
